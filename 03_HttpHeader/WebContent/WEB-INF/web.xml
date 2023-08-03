@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>01_GenericServlet</display-name>
+  <display-name>03_HttpHeader</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -11,32 +11,32 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>GenericServletTest</display-name>
-    <servlet-name>GenericServletTest</servlet-name>
-    <servlet-class>servlet.generic.GenericServletTest</servlet-class>
+    <display-name>HttpHeader</display-name>
+    <servlet-name>HttpHeader</servlet-name>
+    <servlet-class>servlet.header.HttpHeader</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>GenericServletTest</servlet-name>
-    <url-pattern>/gst</url-pattern>
+    <servlet-name>HttpHeader</servlet-name>
+    <url-pattern>/HttpHeader</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>HttpServletTest</display-name>
-    <servlet-name>HttpServletTest</servlet-name>
-    <servlet-class>servlet.http.HttpServletTest</servlet-class>
+    <display-name>PrintHeaderServlet</display-name>
+    <servlet-name>PrintHeaderServlet</servlet-name>
+    <servlet-class>servlet.header.PrintHeaderServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>HttpServletTest</servlet-name>
-    <url-pattern>/hst</url-pattern>
+    <servlet-name>PrintHeaderServlet</servlet-name>
+    <url-pattern>/phs</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>WordServlet</display-name>
-    <servlet-name>WordServlet</servlet-name>
-    <servlet-class>servlet.http.WordServlet</servlet-class>
+    <display-name>PrintHeaderServlet2</display-name>
+    <servlet-name>PrintHeaderServlet2</servlet-name>
+    <servlet-class>servlet.header.PrintHeaderServlet2</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>WordServlet</servlet-name>
-    <url-pattern>/word</url-pattern>
+    <servlet-name>PrintHeaderServlet2</servlet-name>
+    <url-pattern>/phs2</url-pattern>
   </servlet-mapping>
 </web-app>
