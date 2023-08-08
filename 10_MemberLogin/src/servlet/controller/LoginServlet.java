@@ -14,16 +14,16 @@ import servlet.model.vo.MemberDTO;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 폼 값 받는다
+		// 1. 폼 값 받는다.
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		
 		try {
 			// 3. DAO 연결
-			MemberDAO dao = new MemberDAO();
-			MemberDTO dto = dao.login(id, password);
+//			MemberDAO dao = new MemberDAO();
+			MemberDTO dto = MemberDAO.getInstance().login(id, password);
 			
 			// 4. 데이터 바인딩 - session
 			HttpSession session = request.getSession();
@@ -31,8 +31,7 @@ public class LoginServlet extends HttpServlet {
 			
 			// 5. 네비게이션
 			response.sendRedirect("views/login_result.jsp");
-		} catch (SQLException e) {
-		}
+		} catch (SQLException e) {}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
