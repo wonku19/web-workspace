@@ -139,6 +139,20 @@ public class MemberDAO implements MemberDAOTemplate {
 		return list;
 	}
 	
+	public void updateMember(MemberDTO dto) throws SQLException {
+		Connection conn = getConnection();
+		
+		String query = "UPDATE member SET password=?, name=?, address=? WHERE id=?";
+		PreparedStatement ps = conn.prepareStatement(query);
+		ps.setString(1, dto.getPassword());
+		ps.setString(2, dto.getName());
+		ps.setString(3, dto.getAddress());
+		ps.setString(4, dto.getId());
+		
+		ps.executeUpdate();
+		closeAll(ps, conn);
+	}
+	
 	public static void main(String[] args) {
 		MemberDAO dao = new MemberDAO();
 		

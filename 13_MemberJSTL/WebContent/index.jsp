@@ -11,9 +11,8 @@
 	<h1>회원 관리 기능</h1>
 	
 	<ul>
-	<% MemberDTO dto = (MemberDTO) session.getAttribute("dto");
-	   if(dto==null) {
-	%>
+		<c:choose>
+					<c:when test="${empty dto}">
 		<%-- 로그인이 되어 있지 않은 경우 --%>
 		<li><a href="views/register.html">회원가입</a></li>
 		<%-- 회원가입 : 아이디, 비밀번호, 이름, 주소 입력 받아서
@@ -29,9 +28,8 @@
 			  -> LoginServlet / post 방식
 			  -> 세션 데이터 바인딩 -> views/login_result.jsp (정보 출력)
 		 --%>
-		 
-		 <% } else { %>
-		
+		 </c:when>
+		<c:otherwise>	
 		<%-- 로그인 되었을 때 --%>
 		<li><a href="views/search.html">회원검색</a></li>
 		<%-- 
@@ -53,8 +51,8 @@
 		     -> DAO : updateMember 메소드
 		     -> update_result.jsp : ...님의 정보를 수정했다. + a 링크로 index.jsp로
 		--%>
-		
-		<% } %>
+			</c:otherwise>
+		</c:choose>
 	</ul>
 	
 </body>
