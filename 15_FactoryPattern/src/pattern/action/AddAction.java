@@ -5,7 +5,7 @@ package pattern.action;
  * --> 인터페이스 기반으로 작성된 재사용성이 강한 자바 클래스
  * */
 
-public class AddAction implements Action{
+public class AddAction implements Action {
 
 	@Override
 	public void execute() {

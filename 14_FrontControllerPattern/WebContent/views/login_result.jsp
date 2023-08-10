@@ -1,7 +1,6 @@
-<%@page import="servlet.model.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +11,7 @@
 
 	<c:choose>
 		<c:when test="${!empty vo}">
-		<h1>로그인 정보</h1>
+			<h1>로그인 정보</h1>
 			<ul>
 				<li>아이디 : ${vo.id}</li>
 				<li>이름 : ${vo.name}</li>
@@ -21,9 +20,8 @@
 			<a href="/index.jsp">첫 페이지로 이동</a>
 		</c:when>
 		<c:otherwise>
-			<h3>로그인 실패..! 로그인부터 하고 오세요</h3>  
+			<h3>로그인 실패..! 로그인부터 하고 오세요</h3>
 			<a href="login.html">login.html</a>
-			<h3>${vo.id}dd</h3>
 		</c:otherwise>
 	</c:choose>
 </body>

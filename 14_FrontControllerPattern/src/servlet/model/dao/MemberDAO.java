@@ -8,29 +8,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import config.ServerInfo;
-
 import servlet.model.vo.MemberVO;
 
 public class MemberDAO implements MemberDAOTemplate {
-
+	
 	// 싱글톤 패턴 - 클래스의 객체가 항상 하나만 존재하도록
 	/*
 	 * DAO를 반복적으로 생성하고 해제하는 것은 비효율적
 	 * 객체지향적 설계! 싱글톤 패턴은 객체지향적 설계 원칙을 준수 -> 중앙에서 처리!
 	 * 주의할 점은 싱글톤은 전역 상태를 가질 수 있으므로 오남용하면 애플리케이션의 복잡성이 증가
-	 */
+	 * */
 	private static MemberDAO dao = new MemberDAO();
-	private MemberDAO() { 
+	private MemberDAO() {
 		try {
 			Class.forName(ServerInfo.DRIVER_NAME);
-		} catch (ClassNotFoundException e) {
-		}
+		} catch (ClassNotFoundException e) {}
 	}
 	public static MemberDAO getInstance() {
 		return dao;
 	}
 	
-
 	@Override
 	public Connection getConnection() throws SQLException {
 		Connection conn = DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASSWORD);
@@ -53,13 +50,13 @@ public class MemberDAO implements MemberDAOTemplate {
 	public void registerMember(MemberVO vo) throws SQLException {
 		Connection conn = getConnection();
 		
-		String query = "INSERT INTO member(id, password, name, addr) VALUES(?, ?, ?, ?)";
+		String query = "INSERT INTO member(id, password, name, address) VALUES(?, ?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(query);
 		
 		ps.setString(1, vo.getId());
 		ps.setString(2, vo.getPassword());
 		ps.setString(3, vo.getName());
-		ps.setString(4, vo.getAddress()); 
+		ps.setString(4, vo.getAddress());
 		
 		ps.executeUpdate();
 		
@@ -84,7 +81,7 @@ public class MemberDAO implements MemberDAOTemplate {
 			vo.setId(rs.getString("id"));
 			vo.setPassword(rs.getString("password"));
 			vo.setName(rs.getString("name"));
-			vo.setAddress(rs.getString("addr"));
+			vo.setAddress(rs.getString("address"));
 		}
 		closeAll(rs, ps, conn);
 		return vo;
@@ -106,7 +103,7 @@ public class MemberDAO implements MemberDAOTemplate {
 			vo.setId(rs.getString("id"));
 			vo.setPassword(rs.getString("password"));
 			vo.setName(rs.getString("name"));
-			vo.setAddress(rs.getString("addr"));
+			vo.setAddress(rs.getString("address"));
 		}
 		closeAll(rs, ps, conn);
 		return vo;
@@ -126,25 +123,27 @@ public class MemberDAO implements MemberDAOTemplate {
 			vo.setId(rs.getString("id"));
 			vo.setPassword(rs.getString("password"));
 			vo.setName(rs.getString("name"));
-			vo.setAddress(rs.getString("addr"));
+			vo.setAddress(rs.getString("address"));
 			list.add(vo);
 		}
 		closeAll(rs, ps, conn);
 		return list;
 	}
-	public void updateMember(MemberVO vo) throws SQLException{
+	
+	public void updateMember(MemberVO vo) throws SQLException {
 		Connection conn = getConnection();
 		
-		String query = "UPDATE MEMBER SET PASSWORD = ? , NAME = ?, ADDR = ? WHERE ID = ?"; 
-		PreparedStatement ps = conn.prepareStatement(query); 
+		System.out.println("updateVO :: " + vo);
+		
+		String query = "UPDATE member SET password=?, name=?, address=? WHERE id=?";
+		PreparedStatement ps = conn.prepareStatement("UPDATE member SET password=?, name=?, address=? WHERE id=?");
 		ps.setString(1, vo.getPassword());
 		ps.setString(2, vo.getName());
 		ps.setString(3, vo.getAddress());
 		ps.setString(4, vo.getId());
 		
-		
-		ps.executeUpdate();
-		closeAll(ps, conn); 
+		System.out.println("update :: " + ps.executeUpdate());
+		closeAll(ps, conn);
 	}
 	
 	public static void main(String[] args) {
@@ -157,7 +156,7 @@ public class MemberDAO implements MemberDAOTemplate {
 		vo.setAddress("경기 광주");
 		
 		try {
-//			dao.registerMember(dto);
+			//dao.registerMember(dto);
 			
 			vo = dao.login("user1", "user1");
 			System.out.println("name : " + vo.getName());
