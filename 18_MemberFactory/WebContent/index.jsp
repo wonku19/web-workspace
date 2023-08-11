@@ -18,8 +18,8 @@
 			</c:when>
 			<c:otherwise>
 				<li><a href="views/search.html">회원검색</a></li>
-				<li><a href="front.do?command=allMember">전체회원보기</a></li>
-				<li><a href="front.do?command=logout">로그아웃</a></li>
+				<li><a href="allMember.do">전체회원보기</a></li>
+				<li><a href="logout.do">로그아웃</a></li>
 				<li><a href="views/update.jsp">회원 정보 수정</a></li>
 			</c:otherwise>
 		</c:choose>
@@ -27,6 +27,7 @@
 	
 </body>
 </html>
+
 
 
 
