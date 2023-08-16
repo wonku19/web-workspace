@@ -7,12 +7,16 @@ public class HandlerMapping {
 	public static HandlerMapping getInstance() {
 		return handler;
 	}
-
+	
 	public Controller createController(String command) {
 		Controller controller = null;
 		
-		return controller;
+		if(command.equals("idCheck.do")) {
+			controller = new IdCheckController();
+		}
 		
+		return controller;
 	}
 	
 }
+

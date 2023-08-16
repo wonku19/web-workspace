@@ -14,18 +14,17 @@ public class EncodingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        String nick = request.getParameter("nick"); 
-        
-        try {
+		String nick = request.getParameter("nick");
+		
+		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-        
-        PrintWriter out = response.getWriter();
-        out.println(nick);
-    }
+		
+		PrintWriter out = response.getWriter();
+		out.print(nick);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
