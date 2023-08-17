@@ -4,22 +4,23 @@ public class Item {
 	
 	private int itemId;
 	private String itemName;
-	private int prive;
+	private int price;
 	private String description;
 	private String pictureUrl;
 	private int count;
-	
-	public Item() {}
-	public Item(int itemId, String itemName, int prive, String description, String pictureUrl, int count) {
+	public Item() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Item(int itemId, String itemName, int price, String description, String pictureUrl, int count) {
 		super();
 		this.itemId = itemId;
 		this.itemName = itemName;
-		this.prive = prive;
+		this.price = price;
 		this.description = description;
 		this.pictureUrl = pictureUrl;
 		this.count = count;
 	}
-	
 	public int getItemId() {
 		return itemId;
 	}
@@ -32,11 +33,11 @@ public class Item {
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
-	public int getPrive() {
-		return prive;
+	public int getPrice() {
+		return price;
 	}
-	public void setPrive(int prive) {
-		this.prive = prive;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public String getDescription() {
 		return description;
@@ -56,10 +57,9 @@ public class Item {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
 	@Override
 	public String toString() {
-		return "Item [itemId=" + itemId + ", itemName=" + itemName + ", prive=" + prive + ", description=" + description
+		return "Item [itemId=" + itemId + ", itemName=" + itemName + ", price=" + price + ", description=" + description
 				+ ", pictureUrl=" + pictureUrl + ", count=" + count + "]";
 	}
 	

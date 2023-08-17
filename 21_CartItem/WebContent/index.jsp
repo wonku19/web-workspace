@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>===== Fruits All Item =====</h2>
+	<h2>==== Fruits All Item =====</h2>
 	<a href="itemList.do">Show All Fruit Item Using Factory Pattern</a>
+	
 </body>
 </html>
