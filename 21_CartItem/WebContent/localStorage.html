@@ -6,6 +6,7 @@
 </head>
 <body>
 	<h1>Local Storage TEST</h1>
+	
 	<button onclick="add()">추가</button>
 	<button onclick="view()">보기</button>
 	<button onclick="remove()">삭제</button>
@@ -14,18 +15,20 @@
 	
 	<script>
 	function add() {
-		localStorage.setItem("test","Item1");	
+		localStorage.setItem("test", "Item1");
 	}
-	function view(){
+	function view() {
 		document.querySelector("#resultView").innerHTML = localStorage.getItem("test");
 	}
-	function remove(){
+	function remove() {
 		localStorage.removeItem("test");
 		location.reload();
 	}
-	
-	
 	</script>
-	
 </body>
 </html>
+
+
+
+
+

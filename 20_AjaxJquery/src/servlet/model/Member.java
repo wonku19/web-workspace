@@ -8,7 +8,6 @@ public class Member {
 	
 	public Member() {}
 	public Member(String name, int age, String addr) {
-		super();
 		this.name = name;
 		this.age = age;
 		this.addr = addr;
@@ -31,9 +30,9 @@ public class Member {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
+	
 	@Override
 	public String toString() {
 		return "Member [name=" + name + ", age=" + age + ", addr=" + addr + "]";
 	}
-	
 }

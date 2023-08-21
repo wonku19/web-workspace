@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	resultMap에서 TB_STUDENT, TB_DEPARTMENT
+	id, result - 앞에서 배운 건 여기까지였다면
+	<association property="department" resultMap="departmentMap"/>
+	
+	showStudent
+ -->

@@ -9,26 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.connector.Response;
-
-/**
- * Servlet implementation class JQueryAjax2
- */
-@WebServlet("/JQueryAjax2")
-public class JQueryAjax2 extends HttpServlet {
+@WebServlet("/SerialAjax")
+public class SerialAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setContentType("text/html;charset=utf-8");
+		
 		String name = request.getParameter("name");
 		String addr = request.getParameter("addr");
 		
 		PrintWriter out = response.getWriter();
-		out.print(addr + "에 사는" + name + "님!, 회원가입 성공");
+		out.print(addr + "에 사는 " + name + "님!!, 회원가입 성공!!");
 		out.close();
 	}
-	
-	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

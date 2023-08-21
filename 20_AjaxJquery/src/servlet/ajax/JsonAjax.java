@@ -15,9 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import servlet.model.Member;
 
-/**
- * Servlet implementation class JsonAjax
- */
 @WebServlet("/JsonAjax")
 public class JsonAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,16 +22,15 @@ public class JsonAjax extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Json 형식의 비동기 코드를 작성하려면.. json 라이브러리가 필요
 		
-		
 		// JSONObject 객체 하나 생성
 		JSONObject json = new JSONObject();
-				
-		// 1.
+		
+		// 1. 
 //		json.put("name", "Jason");
 //		json.put("age", 20);
 //		json.put("addr", "Texas");
-
-		// 2. 
+		
+		// 2.
 		Member member = new Member("Jason", 20, "Texas");
 		ObjectMapper mapper = new ObjectMapper();
 		String result = mapper.writeValueAsString(member);
@@ -44,8 +40,8 @@ public class JsonAjax extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.print(json);
 		out.close();
+		
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

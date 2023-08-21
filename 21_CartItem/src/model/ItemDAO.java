@@ -9,106 +9,102 @@ import java.util.ArrayList;
 
 import config.ServerInfo;
 
-
-public class ItemDAO implements ItemDAOTemplate{
-
+public class ItemDAO implements ItemDAOTemplate {
 	
-	public static void main(String[] args) {
-		ItemDAO da = new ItemDAO();
-		
-		try {
-			da.getAllItem();
-//			da.getItem(42);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
-	private static ItemDAO dao = new ItemDAO();	
+	private static ItemDAO dao = new ItemDAO();
 	private ItemDAO() {
 		try {
 			Class.forName(ServerInfo.DRIVER_NAME);
 		} catch (ClassNotFoundException e) {
-				
+			e.printStackTrace();
 		}
 	}
 	public static ItemDAO getInstance() {
 		return dao;
-	} 
-	
+	}
+
 	@Override
 	public Connection getConnection() throws SQLException {
-		Connection conn = DriverManager.getConnection(ServerInfo.URL,ServerInfo.USER,ServerInfo.PASSWORD);
-		return conn;
+		return DriverManager.getConnection(ServerInfo.URL, ServerInfo.USER, ServerInfo.PASSWORD);
 	}
 
 	@Override
 	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException {
 		ps.close();
 		conn.close();
-		
 	}
 
 	@Override
 	public void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
-		
 		rs.close();
-		closeAll(ps,conn);
-		
+		closeAll(ps, conn);
 	}
 
 	@Override
 	public ArrayList<Item> getAllItem() throws SQLException {
-		String query = "SELECT * FROM ITEM";
-		ArrayList<Item> item = new ArrayList<>();
 		Connection conn = getConnection();
-		PreparedStatement ps = conn.prepareStatement(query);
-		ResultSet rs = ps.executeQuery();
-		Item it = null;
 		
+		System.out.println("getAllItem :: ");
+		
+		String query = "SELECT * FROM item";
+		PreparedStatement ps = conn.prepareStatement(query);
+		
+		ArrayList<Item> list = new ArrayList<>();
+		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
-			it = new Item(rs.getInt("item_id"),rs.getString("item_name"),rs.getInt("price"),rs.getString("DESCRIPTION"),rs.getString("picture_url"),rs.getInt("count"));						
-			item.add(it);			
+			list.add(new Item(rs.getInt(1), 
+								rs.getString(2), 
+								rs.getInt(3), 
+								rs.getString(4), 
+								rs.getString(5), 
+								rs.getInt(6)));
 		}
-		System.out.println(item);
- 		return item;
+		closeAll(rs, ps, conn);
+		return list;
 	}
 
 	@Override
 	public Item getItem(int itemId) throws SQLException {
-		String query = "SELECT * FROM ITEM WHERE item_id=?";
 		Connection conn = getConnection();
+		
+		String query = "SELECT * FROM item WHERE item_id=?";
 		PreparedStatement ps = conn.prepareStatement(query);
 		ps.setInt(1, itemId);
+		
 		ResultSet rs = ps.executeQuery();
 		Item item = null;
 		if(rs.next()) {
-			item = new Item(rs.getInt("item_id"),rs.getString("item_name"),rs.getInt("price"),rs.getString("DESCRIPTION"),rs.getString("picture_url"),rs.getInt("count"));		
+			item = new Item(rs.getInt(1), 
+							rs.getString(2), 
+							rs.getInt(3), 
+							rs.getString(4), 
+							rs.getString(5), 
+							rs.getInt(6));
 		}
-		
-	
+		closeAll(rs, ps, conn);
 		return item;
 	}
 
 	@Override
 	public boolean updateRecordCount(int itemId) throws SQLException {
-		String query = "UPDATE ITEM SET count=count+1 WHERE item_id=?";
 		Connection conn = getConnection();
+		
+		String query = "UPDATE item SET count=count+1 WHERE item_id=?";
 		PreparedStatement ps = conn.prepareStatement(query);
 		ps.setInt(1, itemId);
 		
-			int row = ps.executeUpdate();	
-			
-			boolean result = false;
-			if(row>0) result = true;
-			closeAll(ps,conn);
+		int row = ps.executeUpdate();
 		
-		return true;
+		boolean result = false;
+		if(row > 0) result = true;
+		
+		closeAll(ps, conn);
+		
+		return result;
 	}
-	
-	
-	
+
 }
+
+
+
+

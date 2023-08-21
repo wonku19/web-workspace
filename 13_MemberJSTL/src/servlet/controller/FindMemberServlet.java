@@ -15,7 +15,7 @@ import servlet.model.vo.MemberDTO;
 @WebServlet("/FindMemberServlet")
 public class FindMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 //		MemberDAO dao = new MemberDAO();
@@ -23,7 +23,8 @@ public class FindMemberServlet extends HttpServlet {
 			MemberDTO dto = MemberDAO.getInstance().findByIdMember(id);
 			if(dto!=null) {
 				request.setAttribute("dto", dto);
-				request.getRequestDispatcher("views/find_ok.jsp").forward(request, response);
+				request.getRequestDispatcher("views/find_ok.jsp")
+												.forward(request, response);
 			} else {
 				response.sendRedirect("views/find_fail.jsp");
 			}
