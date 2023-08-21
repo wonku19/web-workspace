@@ -7,3 +7,10 @@
 	
 	showStudent
  -->
+ 
+ <select id="showStudent" parameterType="String">
+ 	<!-- #{word} : 조건 - word가 null인지 아닌지
+ 		WHERE student_no, student_name, student_address, department_name, category 랑 word가 포함되어 있는지
+ 		이중 하나만 걸려도 되니까 OR로 처리해야함
+ 	 -->
+ </select>
