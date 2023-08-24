@@ -2,6 +2,8 @@ package model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import model.vo.StudentVO;
 
 public class StudentDAO {
@@ -10,3 +12,6 @@ public class StudentDAO {
 		return sqlSession.selectList("studentMapper.showStudent", word);
 	}
 }
+
+
+
